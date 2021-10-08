@@ -11,9 +11,13 @@ const initialState = {
 
 // Always name custom hooks with 'use' before the name
 export const useHomeFetch = () => {
+    const [searchTerm, setSearchTerm] = useState('');
     const [state, setState] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const [error, setError] =useState(false);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    console.log(searchTerm)
 
     const fetchMovies = async (page, searchTerm = "") => {
         try {
@@ -35,10 +39,11 @@ export const useHomeFetch = () => {
         setLoading(false);
     }
 
-    //Initial Render //The empty dependency array means it will run only once
+    //Initial Render and Search
     useEffect(() => {
-        fetchMovies(1);
-    }, []);
+        setState(initialState);
+        fetchMovies(1, searchTerm);
+    }, [searchTerm]);
 
-    return { state, loading, error };
+    return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 }
