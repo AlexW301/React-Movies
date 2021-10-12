@@ -20,5 +20,23 @@ export const Content = styled.div`
         justify-content: center;
         background: var(--medGrey);
         border-radius: 20px;
+        margin: 0 20px;
+        flex: 1;
+
+        :first-child {
+            margin-left: 0;
+        }
+
+        :last-child {
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (max-width: 786px) {
+        display: block;
+
+        .column {
+            margin: 20px 0;
+        }
     }
 `;
