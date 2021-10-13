@@ -6,22 +6,22 @@ import searchIcon from '../../images/search-icon.svg';
 import { Wrapper, Content } from './SearchBar.styles';
 
 class SearchBar extends Component {
-    
+    state = { value: ''};
+    timeout = null;
 
-    useEffect(() => {
-        // Below: This skips the initial render so this does not run on the first page load
-        if(initial.current) {
-            initial.current = false;
-            return;
+    // Componentdidmount Componentdidupdate Componentwillunmount
+    componentDidUpdate(_prevProps, prevState) {
+        if(this.state.value !== prevState.value) {
+            const { setSearchTerm } = this.props;
+
+            clearTimeout(this.timeout)
+
+            this.timeout = setTimeout(() => {
+                setSearchTerm(state)
+            }, 500)
         }
+    }
 
-        const timer = setTimeout(() => {
-            setSearchTerm(state)
-        }, 500)
-
-        // Below: Doesnt trigger until the function has finished and is going to run again. This resets the timer so we don't have multiple timers running
-        return () => clearTimeout(timer)
-    }, [setSearchTerm, state])
 
     return (
         <Wrapper>
