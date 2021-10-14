@@ -17,25 +17,31 @@ class SearchBar extends Component {
             clearTimeout(this.timeout)
 
             this.timeout = setTimeout(() => {
-                setSearchTerm(state)
+                const { value } = this.state;
+                setSearchTerm(value)
             }, 500)
         }
     }
 
+    render() {
 
-    return (
-        <Wrapper>
-            <Content>
-                <img src={searchIcon} alt='search-icon' />
-                <input 
-                type='text'
-                placeholder='Search Movie'
-                onChange={event => setState(event.currentTarget.value)}
-                value={state}
-                />
-            </Content>
-        </Wrapper>
-    )
+        const { value } = this.state;
+
+        return (
+            <Wrapper>
+                <Content>
+                    <img src={searchIcon} alt='search-icon' />
+                    <input 
+                    type='text'
+                    placeholder='Search Movie'
+                    onChange={event => this.setState({value: event.currentTarget.value})}
+                    value={value}
+                    />
+                </Content>
+            </Wrapper>
+        )
+    }
+
 };
 
 SearchBar.propTypes = {
