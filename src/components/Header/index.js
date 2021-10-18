@@ -6,7 +6,12 @@ import TMDBLogo from '../../images/tmdb_logo.svg';
 
 import { Wrapper, Content, LogoImg, TMDBLogoImg } from "./Header.styles";
 
-const Header = () => (
+//Context
+import { Context } from '../../context';
+
+const Header = () => {
+
+    return (
     <Wrapper>
         <Content>
             <Link to='/'>
@@ -15,6 +20,7 @@ const Header = () => (
             <TMDBLogoImg src={TMDBLogo} alt='tmdb-logo' />
         </Content>
     </Wrapper>
-)
+    );
+};
 
 export default Header;
