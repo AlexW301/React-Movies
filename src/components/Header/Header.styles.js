@@ -12,6 +12,27 @@ export const Content = styled.div`
     max-width: var(--maxWidth);
     padding: 20px 0;
     margin: 0 auto;
+    color: var(--white);
+
+    a {
+        color: var(--white);
+        text-decoration: none;
+    }
+
+    .login-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .login {
+        font-size: 1.1rem;
+    }
+
+    .loggedin {
+        font-size: 1.1rem;
+    }
 `;
 
 export const LogoImg = styled.img`
