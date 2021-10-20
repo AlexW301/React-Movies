@@ -6,6 +6,16 @@ export const Wrapper = styled.div`
     gap: 1rem;
     width: 50%;
 
+    .set-rating {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        gap: 1rem;
+
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
     input[type=range] {
         -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
         width: 10rem; /* Specific width is required for Firefox. */
@@ -38,7 +48,7 @@ export const Wrapper = styled.div`
          color: transparent;
         }
 
-        input[type=range]::-webkit-slider-thumb {
+    input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 20px;
             width: 20px;
@@ -49,19 +59,19 @@ export const Wrapper = styled.div`
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
         }
 
-        input[type=range]::-webkit-slider-runnable-track {
+    input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 8.4px;
             cursor: pointer;
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
             background: var(--white);
-            border-radius: 1.3px;
+            border-radius: 10.3px;
             border: 0.2px solid #010101;
         }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #367ebd;
-}
+    input[type=range]:focus::-webkit-slider-runnable-track {
+  background: var(--white);
+        }
 
     button {
         display: block;

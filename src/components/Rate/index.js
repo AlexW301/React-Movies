@@ -9,7 +9,7 @@ const Rate = ({ callback }) => {
 
     return (
         <Wrapper>
-            <div className="setRating">
+            <div className="set-rating">
             <input
             type='range'
             min='1'

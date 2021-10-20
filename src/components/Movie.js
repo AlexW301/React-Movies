@@ -22,7 +22,7 @@ const Movie = () => {
     //Calling the useFetchMovie hook for the specific movie id, movie/state is now equal to the param movieId
     const { state: movie, loading, error } = useMovieFetch(movieId);
 
-    console.log(movie)
+    console.log(movie);
 
     if(loading) return <Spinner/>
     if(error) return <div>Something went wrong...</div>

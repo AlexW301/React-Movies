@@ -21,6 +21,18 @@ const MovieInfo = ({ movie }) => {
         console.log(rate)
     }
 
+    const getUserRating = async () => {
+        if(user) {
+        const ratings = await API.fetchRating(user.sessionId)
+        const thisMovie = ratings.results.find(el => el.id === movie.id);
+        const userRating = thisMovie.rating;
+        return userRating
+        } else {
+            console.log('Not Logged in')
+        }
+    }
+
+    getUserRating();
 
 return (
     <Wrapper backdrop={movie.backdrop_path}>
@@ -40,7 +52,7 @@ return (
 
                 <div className="rating-directors">
                     <div>
-                        <h3>RATING</h3>
+                        <h3>RATING</h3> 
                         <div className="score">{movie.vote_average}</div>
                     </div>
                     <div className="director">
@@ -63,7 +75,7 @@ return (
 );
                         };
 MovieInfo.propTypes = {
-    movie: PropTypes.object
+    movie: PropTypes.object,
 }
 
 export default MovieInfo;
