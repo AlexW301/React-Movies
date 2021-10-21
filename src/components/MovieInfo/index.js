@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import API from "../../API";
 import PropTypes from 'prop-types';
 //Components
@@ -33,6 +33,7 @@ const MovieInfo = ({ movie }) => {
     }
 
     getUserRating();
+
 
 return (
     <Wrapper backdrop={movie.backdrop_path}>
