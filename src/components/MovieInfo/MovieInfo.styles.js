@@ -56,6 +56,12 @@ export const Text = styled.div`
         margin: 0;
     }
 
+    .rate-movie {
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: .7rem;
+    }
+
     .directors {
         margin: 0 0 0 40px;
 
@@ -69,4 +75,5 @@ export const Text = styled.div`
             font-size: var(--fontBig);
         }
     }
+
 `;

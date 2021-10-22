@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import API from "../../API";
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 //Components
 import Thumb from '../Thumb'
 import Rate from "../Rate";
@@ -15,24 +15,40 @@ import { Context } from '../../context';
 
 const MovieInfo = ({ movie }) => {
     const [user] = useContext(Context);
+    const [userRating, setUserRating] = useState('');
+    const [updateUserRating, setUpdateUserRating] = useState(true);
 
     const handleRating = async value => {
         const rate = await API.rateMovie(user.sessionId, movie.id, value);
+        setUpdateUserRating(true);
         console.log(rate)
     }
 
-    const getUserRating = async () => {
-        if(user) {
-        const ratings = await API.fetchRating(user.sessionId)
-        const thisMovie = ratings.results.find(el => el.id === movie.id);
-        const userRating = thisMovie.rating;
-        return userRating
-        } else {
-            console.log('Not Logged in')
-        }
-    }
+    useEffect(() => {
+        const getUserRating = async () => {
+            if(user) {
+            const ratings = await API.fetchRating(user.sessionId)
+            const thisMovie = ratings.results.find(el => el.id === movie.id);
+            const userRating = thisMovie.rating;
+            return userRating
+            } else {
+                console.log('Not Logged in')
+            }
+        };
 
-    getUserRating();
+        if (updateUserRating) {
+            getUserRating().then(result => {
+                setUserRating(result);
+            }, function(error) {
+                setUserRating(error);
+            });
+
+            setUpdateUserRating(false);
+        };
+
+        
+    },[movie.id, setUserRating, updateUserRating, user, userRating])
+
 
 
 return (
@@ -56,6 +72,13 @@ return (
                         <h3>RATING</h3> 
                         <div className="score">{movie.vote_average}</div>
                     </div>
+                    {user && (
+                        <div>
+                        <h3>MY RATING</h3> 
+                        <div className="score">{userRating}</div>
+                    </div>
+                    )
+                    }
                     <div className="director">
                         <h3>DIRECTOR{movie.directors.length > 1 ? 'S' : ''}</h3>
                         {//Maps through all the possible directors and adds a p tag for each director
@@ -66,7 +89,7 @@ return (
                 </div>
                 {user && (
                     <div>
-                    <p>Rate Movie</p>
+                    <h3 className="rate-movie">Rate Movie</h3>
                     <Rate callback={handleRating}/>
                 </div>
                 )}
