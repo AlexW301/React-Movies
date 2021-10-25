@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import API from "../../API";
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 //Components
 import Thumb from '../Thumb'
 import Rate from "../Rate";
@@ -17,6 +17,7 @@ const MovieInfo = ({ movie }) => {
     const [user] = useContext(Context);
     const [userRating, setUserRating] = useState('');
     const [updateUserRating, setUpdateUserRating] = useState(true);
+    const [available, setAvailable] = useState(false);
 
     const handleRating = async value => {
         const rate = await API.rateMovie(user.sessionId, movie.id, value);
@@ -25,6 +26,13 @@ const MovieInfo = ({ movie }) => {
     }
 
     useEffect(() => {
+        let availableOn = API.fetchStreamServices(movie.id)
+    availableOn
+    .then((result) => {
+        console.log(result)
+        setAvailable(result)
+    })
+
         const getUserRating = async () => {
             if(user) {
             const ratings = await API.fetchRating(user.sessionId)
@@ -40,7 +48,7 @@ const MovieInfo = ({ movie }) => {
             getUserRating().then(result => {
                 setUserRating(result);
             }, function(error) {
-                setUserRating(error);
+                setUserRating('N/A');
             });
 
             setUpdateUserRating(false);
@@ -48,6 +56,7 @@ const MovieInfo = ({ movie }) => {
 
         
     },[movie.id, setUserRating, updateUserRating, user, userRating])
+
 
 
 
@@ -85,6 +94,36 @@ return (
                         movie.directors.map(director => (
                             <p key={director.credit_id}>{director.name}</p>
                         ))}
+                    </div>
+                </div>
+                <div className="where-to-watch">
+                    <h3 className="wtw-main-heading">Where to Watch</h3>
+                    <h3 className="wtw-heading">Buy</h3>
+                    <div className="where-to-buy">
+                    {
+                        available
+                        ? 
+                        available.results.US.buy
+                        ? 
+                        available.results.US.buy.map((el) => {
+                            return <img className="service-logo" src={`https://www.themoviedb.org/t/p/original/${el.logo_path}`} alt="logo"/>
+                        }) : <p className="not-available">Not Available</p>
+                        : <p className="not-available">Not Available</p>
+                    }
+                    </div>
+
+                    <h3 className="wtw-heading">Rent</h3>
+                    <div className="where-to-rent">
+                    {
+                        available
+                        ? 
+                        available.results.US.rent
+                        ? 
+                        available.results.US.rent.map((el) => {
+                            return <img className="service-logo" src={`https://www.themoviedb.org/t/p/original/${el.logo_path}`} alt="logo"/>
+                        }) : <p className="not-available">Not Available</p>
+                        : <p className="not-available">Not Available</p>
+                    }
                     </div>
                 </div>
                 {user && (
