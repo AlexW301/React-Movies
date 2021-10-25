@@ -125,7 +125,22 @@ return (
                         : <p className="not-available">Not Available</p>
                     }
                     </div>
+
+                    <h3 className="wtw-heading">Stream</h3>
+                    <div className="where-to-stream">
+                    {
+                        available
+                        ? 
+                        available.results.US.flatrate
+                        ? 
+                        available.results.US.flatrate.map((el) => {
+                            return <img className="service-logo" src={`https://www.themoviedb.org/t/p/original/${el.logo_path}`} alt="logo"/>
+                        }) : <p className="not-available">Not Available</p>
+                        : <p className="not-available">Not Available</p>
+                    }
+                    </div>
                 </div>
+                
                 {user && (
                     <div>
                     <h3 className="rate-movie">Rate Movie</h3>

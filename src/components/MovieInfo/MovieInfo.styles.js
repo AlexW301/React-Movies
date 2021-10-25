@@ -109,4 +109,9 @@ export const Text = styled.div`
         letter-spacing: 2px;
     }
 
+    .where-to-stream {
+        display: flex;
+        gap: 10px;
+    }
+
 `;
