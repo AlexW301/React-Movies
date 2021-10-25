@@ -1,15 +1,14 @@
 import React,{ useState } from "react";
 //Styles
 import { Wrapper } from "./Rate.styles";
-//Components
-import Button from "../Button";
+
 
 const Rate = ({ callback }) => {
-    const [value, setValue] = useState(5);
+    const [value, setValue] = useState(8);
 
     return (
         <Wrapper>
-            <div className="setRating">
+            <div className="set-rating">
             <input
             type='range'
             min='1'

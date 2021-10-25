@@ -22,6 +22,14 @@ const apiSettings = {
       : `${POPULAR_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
+  fetchRating: async (sessionId) => {
+      const endpoint = `${API_URL}account/{account_id}/rated/movies?api_key=${API_KEY}&language=en-US&session_id=${sessionId}`;
+      return await (await fetch(endpoint)).json();
+  },
+  fetchStreamServices: async (movieId) => {
+      const endpoint = `${API_URL}movie/${movieId}/watch/providers?api_key=${API_KEY}`
+      return await (await fetch(endpoint)).json();
+  },
   fetchMovie: async movieId => {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();

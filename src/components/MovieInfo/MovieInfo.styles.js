@@ -56,6 +56,12 @@ export const Text = styled.div`
         margin: 0;
     }
 
+    .rate-movie {
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: .7rem;
+    }
+
     .directors {
         margin: 0 0 0 40px;
 
@@ -69,4 +75,43 @@ export const Text = styled.div`
             font-size: var(--fontBig);
         }
     }
+
+    .wtw-main-heading {
+        font-size: 1.5rem;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 10px;
+        margin: 10px 0;
+    }
+
+    .wtw-heading {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .where-to-buy {
+        display: flex;
+        gap: 10px;
+    }
+
+    .service-logo {
+        width: 35px;
+        height: 35px;
+        border-radius: 10px;
+    }
+
+    .where-to-rent {
+        display: flex;
+        gap: 10px;
+    }
+
+    .not-available {
+        margin: 0;
+        letter-spacing: 2px;
+    }
+
+    .where-to-stream {
+        display: flex;
+        gap: 10px;
+    }
+
 `;
